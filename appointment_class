@@ -1,0 +1,65 @@
+
+/**
+ * Program purpose: To define the appointment class
+ *
+ * @author (Afizudin Firdaus)
+ * @version (Date: 10/6/2024)
+ */
+public class Appointment
+{
+  private String custName, apptDate, apptTime, barberName;
+  
+  //Constructors
+  public Appointment() {
+      custName = null;
+      apptDate = null;
+      apptTime = null;
+      barberName = null;
+  }//end of the constructor
+  
+  public Appointment(String custName, String apptDate, String apptTime, String barberName) {
+      this.custName = custName;
+      this.apptDate = apptDate;
+      this.apptTime = apptTime;
+      this.barberName = barberName;
+  }//end of the constructor
+  
+  //accessor methods
+  public String getCustName() {
+      return custName;
+  }//end of getCustName() method
+  
+  public String getApptDate() {
+      return apptDate;
+  }//end of getApptDate() method
+  
+  public String getApptTime() {
+      return apptTime;
+  }//end of the getApptTime() method
+  
+  public String getBarberName() {
+      return barberName;
+  }//end of the getBarberName() method
+  
+  //mutator methods
+  public void setCustName(String custName) {
+      this.custName = custName;
+  } //end of the setCustName method
+  public void setApptDate(String apptDate) {
+      this.apptDate = apptDate;
+  }
+  
+  public void setApptTime(String apptTime) {
+      this.apptTime = apptTime;
+  }//end of the setApptTime method
+  
+  public void setBarberName(String barberName) {
+      this.barberName = barberName;
+  }//end of the setBarberName method
+  
+  //toString() method
+  @Override 
+    public String toString() {
+        return String.format("| Name:%-16s | Date:%-16s | Time:%-16s | Barber:%-16s |\n", custName, apptDate, apptTime, barberName);
+    } //end of the toString() method
+}//end of the class
