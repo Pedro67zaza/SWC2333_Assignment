@@ -1,0 +1,109 @@
+
+/**
+ * Program purpose: To manage the appointment details for each customer.
+ *
+ * @author (Afizudin Firdaus)
+ * @version (Date: 10/6/2024)
+ */
+//import the package of the scanner class
+import java.util.Scanner;
+public class DemoBookingSystem
+{
+    public static void main(String[]args) {
+        //declaration of an array of type Appointment with the size of 20
+        Appointment booking[] = new Appointment[20];
+        
+        //instantiation of the scanner class to input on the console
+        Scanner checker = new Scanner(System.in);
+        
+        //input flower details
+        for(int i = 0; i < booking.length; i++)
+        {   
+            System.out.println("*****Customer "+ (i + 1) +"*****");
+            System.out.println("Enter the name of the customer:");
+            String custName = checker.nextLine();
+            System.out.println("Enter the date of the appointment (DD/MM/YY):");
+            String apptDate = checker.nextLine();
+            System.out.println("Enter the time of the appointment (e.g 2 P.M):");
+            String apptTime = checker.nextLine();
+            System.out.println("Enter the name of the barber:");
+            String barberName = checker.nextLine();
+            
+            booking[i] = new Appointment(custName, apptDate, apptTime, barberName);
+        }//end of for
+        
+        //display all appointment details
+        System.out.println("+----------------+----------------+------Barber Booking System------+----------------+----------------");
+        for (Appointment appointment : booking) {
+                if(appointment != null)
+                System.out.printf("| Name:%-16s | Date:%-16s | Time:%-16s | Barber:%-16s |\n", appointment.getCustName(), appointment.getApptDate(), appointment.getApptTime(), appointment.getBarberName());
+            }//end of for
+        
+        //Search for the appointments on a specific date
+        System.out.println("Enter the date to be searched (DD/MM/YY):");
+        String dateSearch = checker.nextLine();
+        boolean found = false;
+        for (Appointment appointment : booking) {
+            if(appointment != null) {
+                if (appointment.getApptDate().equalsIgnoreCase(dateSearch)) {
+                    System.out.printf("| Name:%-16s | Date:%-16s | Time:%-16s | Barber:%-16s |\n", appointment.getCustName(), appointment.getApptDate(), appointment.getApptTime(), appointment.getBarberName());
+                    found = true;
+                    }
+                }
+        }//end of for
+        if (!found) {
+            System.out.println("Date not found in appointment inventory. Please make sure the date is written in (DD/MM/YY) format.");
+            }
+            
+        //Allow the user to update the date or time of a particular appointment
+        System.out.println();
+        System.out.println("Enter the name of the customer to be updated:");
+        String nameSearch = checker.nextLine();
+        found = false;
+        int nameCheck = 0;
+        for (Appointment appointment : booking) {
+            if(appointment != null)
+                if (appointment.getCustName().equalsIgnoreCase(nameSearch)) {
+                    System.out.println("Update the time or date:");
+                    String updateChoice = checker.nextLine();
+                    nameCheck = 0;
+                    
+                    if(updateChoice.equalsIgnoreCase("Date"))
+                    {
+                        System.out.println("Enter the new date (DD/MM/YY):");
+                        String newDate = checker.nextLine();
+                        appointment.setApptDate(newDate);
+                        found = true;
+                        break;
+                        }
+                    else if(updateChoice.equalsIgnoreCase("Time"))
+                        {
+                        System.out.println("Enter the new Time (e.g 2 P.M):");
+                        String newTime = checker.nextLine();
+                        appointment.setApptTime(newTime);
+                        found = true;
+                        break;
+                        }
+                    else
+                        System.out.println("Invalid Input! Enter date or time only.");
+                    }
+                else
+                    nameCheck = -1;
+                }//end of for
+        if (nameCheck < 0) 
+            System.out.println("Name not found in appointment inventory.");
+        else {
+            System.out.println("");
+            System.out.println("+----------------+----------------+------Barber Booking System------+----------------+----------------");
+            for (Appointment appointment : booking) {
+                if(appointment != null)
+                    System.out.printf("| Name:%-16s | Date:%-16s | Time:%-16s | Barber:%-16s |\n", appointment.getCustName(), appointment.getApptDate(), appointment.getApptTime(), appointment.getBarberName());
+            }//end of for
+        }
+        
+        checker.close();
+        
+        }//end of the main method
+    }//end of the class
+
+
